@@ -1,6 +1,5 @@
 #include <curses.h>
-#include <time.h>
-#include <windows.h>
+#include "utils.h"
 
 #define LINES 25
 #define COLUMNS 40
@@ -12,11 +11,6 @@ enum Direction {
     D_LEFT,
     D_RIGHT
 };
-
-void tick(int fps);
-
-// Global time
-clock_t now;
 
 int main(void)
 {
@@ -80,13 +74,4 @@ int main(void)
     endwin();
 
     return 0;
-}
-
-void tick(int fps)
-{
-    int elapsed = clock() - now;
-    elapsed = (float) elapsed / CLOCKS_PER_SEC * 1000.0;
-    int spf = 1.0 / fps * 1000.0;
-    Sleep(spf - elapsed);
-    now = clock();
 }
